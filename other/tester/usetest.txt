@@ -1,0 +1,5 @@
+1. 偶数が与えられた場合にtrueを返す関数を考える
+2. テーブル駆動テストを行う
+3. テストケースとしてふさわしいものを考えテストを書こう
+4. 各テストケースをサブテストとして実行しよう
+5. coverprofileをみてみよう -> go test -coverprofile=profile tester/my_even

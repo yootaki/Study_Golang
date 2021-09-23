@@ -1,0 +1,4 @@
+mode: set
+tester/my_even/my_even.go:3.25,4.16 1 1
+tester/my_even/my_even.go:4.16,6.3 1 1
+tester/my_even/my_even.go:6.8,8.3 1 1
