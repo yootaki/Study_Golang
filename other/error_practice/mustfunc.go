@@ -6,6 +6,7 @@ import (
 )
 
 var validID = regexp.MustCompile(`^[a-z]+\[[0-9]+\]$`)
+
 func main() {
 	fmt.Println(validID.MatchString("adam[23]"))
 

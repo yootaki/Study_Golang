@@ -19,7 +19,7 @@ func main() {
 		time.Sleep(2 * time.Second)
 	}()
 	go func() {
-		v := <- ch
+		v := <-ch
 		fmt.Println("receive done")
 		fmt.Println(v)
 		defer fmt.Println("goroutine2 done")

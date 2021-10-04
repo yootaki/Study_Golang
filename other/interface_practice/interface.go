@@ -16,16 +16,19 @@ type Stringer interface {
 }
 
 type I int
+
 func (i I) String() string {
 	return "I"
 }
 
 type B bool
+
 func (b B) String() string {
 	return "B"
 }
 
 type S string
+
 func (s S) String() string {
 	return "S"
 }

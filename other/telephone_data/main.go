@@ -25,8 +25,8 @@ import (
 )
 
 type User struct {
-	ID int64
-	Name string
+	ID     int64
+	Name   string
 	Number int64
 }
 
@@ -38,22 +38,30 @@ func CreateTable(db *sql.DB) {
 		number INTEGER NOT NULL
 	);
 	`
-	if _, err := db.Exec(sql); err != nil { fmt.Println(err) }
+	if _, err := db.Exec(sql); err != nil {
+		fmt.Println(err)
+	}
 }
 
 func CreateRecord(db *sql.DB, data []string) {
 	number, err := strconv.Atoi(data[1])
-	if err != nil { fmt.Println(err) }
+	if err != nil {
+		fmt.Println(err)
+	}
 	users := []*User{{
-		Name: data[0],
+		Name:   data[0],
 		Number: int64(number),
 	}}
 	for i := range users {
 		const sql = "INSERT INTO user(name, number) values (?,?)"
 		r, err := db.Exec(sql, users[i].Name, users[i].Number)
-		if err != nil { fmt.Println(err) }
+		if err != nil {
+			fmt.Println(err)
+		}
 		id, err := r.LastInsertId()
-		if err != nil { fmt.Println(err) }
+		if err != nil {
+			fmt.Println(err)
+		}
 		users[i].ID = id
 		ScanRecords(db)
 		fmt.Println("名前と番号をスペース区切りで入力")
@@ -62,7 +70,9 @@ func CreateRecord(db *sql.DB, data []string) {
 
 func ScanRecords(db *sql.DB) {
 	rows, err := db.Query("SELECT * FROM user")
-	if err != nil { fmt.Println(err) }
+	if err != nil {
+		fmt.Println(err)
+	}
 	for rows.Next() {
 		var u User
 		if err := rows.Scan(&u.ID, &u.Name, &u.Number); err != nil {
@@ -73,12 +83,15 @@ func ScanRecords(db *sql.DB) {
 	if err := rows.Err(); err != nil {
 		fmt.Println(err)
 	}
+	fmt.Printf("err: %v\n", err)
 }
 
 func main() {
 	/* open database */
 	db, err := sql.Open("sqlite3", "database.db")
-	if err != nil { fmt.Println(err) }
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	ScanRecords(db)
 	// CreateTable(db)

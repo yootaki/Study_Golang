@@ -2,21 +2,21 @@ package omikuji
 
 import (
 	"math/rand"
-	"text/template"
 	"net/http"
+	"text/template"
 )
 
 var tmpl = template.Must(template.New("msg").Parse("<html><body>{{.Name}}さんの運勢は「<b>{{.Omikuji}}</b>」です</body></html>"))
 
 type Result struct {
-	Name string
+	Name    string
 	Omikuji string
 }
 
 /* http://localhost:8080?p=Gopher */
 func handler(w http.ResponseWriter, r *http.Request) {
 	result := Result{
-		Name: r.FormValue("p"),
+		Name:    r.FormValue("p"),
 		Omikuji: omikuji(),
 	}
 	tmpl.Execute(w, result)

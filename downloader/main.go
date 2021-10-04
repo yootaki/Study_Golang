@@ -50,6 +50,7 @@ func main() {
 	//ファイルに書き込みながら、p.Write内も実行する
 	io.Copy(fp, io.TeeReader(resp.Body, &p))
 }
+
 /*
 ダウンロードはできるようになったが、課題要件は一つも満たしていない。
 */

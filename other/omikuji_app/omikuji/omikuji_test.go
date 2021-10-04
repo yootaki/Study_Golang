@@ -2,10 +2,10 @@ package omikuji_test
 
 import (
 	"fmt"
-	"testing"
+	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
-	"io/ioutil"
+	"testing"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
@@ -18,9 +18,15 @@ func TestSample(t *testing.T) {
 	handler(w, r)
 	rw := w.Result()
 	defer rw.Body.Close()
-	if rw.StatusCode != http.StatusOK {t.Fatal("unexpected status code")}
+	if rw.StatusCode != http.StatusOK {
+		t.Fatal("unexpected status code")
+	}
 	b, err := ioutil.ReadAll(rw.Body)
-	if err != nil {t.Fatal("unexpected error")}
+	if err != nil {
+		t.Fatal("unexpected error")
+	}
 	const expected = "Hello, net/http!"
-	if s := string(b); s != expected {t.Fatalf("unexpected response: %s", s)}
+	if s := string(b); s != expected {
+		t.Fatalf("unexpected response: %s", s)
+	}
 }

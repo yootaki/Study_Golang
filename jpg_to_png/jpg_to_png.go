@@ -51,13 +51,13 @@ func main() {
 
 	//カレントディレクトリ内に指定されたディレクトリがあるか探す
 	err := filepath.Walk("./",
-	func(path string, info os.FileInfo, err error) error {
-		if info.IsDir() && info.Name() == img_info.dir_name {
-			//変換するパッケージを呼び出す
-			conv.Convert_files(info)
-		}
-		return nil
-	})
+		func(path string, info os.FileInfo, err error) error {
+			if info.IsDir() && info.Name() == img_info.dir_name {
+				//変換するパッケージを呼び出す
+				conv.Convert_files(info)
+			}
+			return nil
+		})
 	if err != nil {
 		fmt.Println(err)
 	}
